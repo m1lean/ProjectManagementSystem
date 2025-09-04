@@ -1,0 +1,16 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<style>
+    body { font-family: Arial, sans-serif; }
+    h1 { color: #333; }
+    a { color: #2196F3; text-decoration: none; }
+</style>
+
+<h1>Welcome to the Project Management System</h1>
+<p>
+    <a asp-controller="Projects" asp-action="Index">View Projects</a> |
+    <a asp-controller="Users" asp-action="Index">View Users</a> |
+    <a asp-controller="Tasks" asp-action="Index" asp-route-projectId="1">View Tasks</a>
+</p>
