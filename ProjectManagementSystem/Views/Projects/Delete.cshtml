@@ -1,0 +1,21 @@
+﻿@model ProjectManagementSystem.Models.Project
+
+@{
+    ViewData["Title"] = "Delete Project";
+}
+
+<style>
+    body { font-family: Arial, sans-serif; }
+    button { background-color: #f44336; color: white; padding: 10px; border: none; cursor: pointer; }
+    a { color: #2196F3; text-decoration: none; }
+</style>
+
+<h1>Delete @Model.Name?</h1>
+<p>Are you sure? This will delete the project and related tasks.</p>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit">Delete</button>
+</form>
+
+<a asp-action="Index">Back</a>

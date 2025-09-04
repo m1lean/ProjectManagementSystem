@@ -6,7 +6,7 @@ namespace ProjectManagementSystem.Data
     public class ApplicationDbContext : DbContext
     {
         public DbSet<Project> Projects { get; set; }
-        public DbSet<Task> Tasks { get; set; }
+        public DbSet<ProjectTask> ProjectTasks { get; set; } // Updated
         public DbSet<User> Users { get; set; }
         public DbSet<ProjectUser> ProjectUsers { get; set; }
 
@@ -28,15 +28,15 @@ namespace ProjectManagementSystem.Data
                 .WithMany(u => u.ProjectUsers)
                 .HasForeignKey(pu => pu.UserId);
 
-            // Task relationships
-            modelBuilder.Entity<Task>()
+            // ProjectTask relationships (Updated)
+            modelBuilder.Entity<ProjectTask>()
                 .HasOne(t => t.Project)
-                .WithMany(p => p.Tasks)
+                .WithMany(p => p.ProjectTasks) // Updated
                 .HasForeignKey(t => t.ProjectId);
 
-            modelBuilder.Entity<Task>()
+            modelBuilder.Entity<ProjectTask>()
                 .HasOne(t => t.AssignedUser)
-                .WithMany(u => u.AssignedTasks)
+                .WithMany(u => u.AssignedTasks) // Updated
                 .HasForeignKey(t => t.AssignedUserId);
         }
     }

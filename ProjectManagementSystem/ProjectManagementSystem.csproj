@@ -14,10 +14,4 @@
       </PackageReference>
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Views\Projects\" />
-      <Folder Include="Views\Tasks\" />
-      <Folder Include="Views\Users\" />
-    </ItemGroup>
-
 </Project>

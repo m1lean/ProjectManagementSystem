@@ -7,10 +7,10 @@ namespace ProjectManagementSystem.Controllers
 {
     public class TasksController : Controller
     {
-        private readonly ITaskService _taskService;
+        private readonly IProjectTaskService _taskService;
         private readonly IUserService _userService;
 
-        public TasksController(ITaskService taskService, IUserService userService)
+        public TasksController(IProjectTaskService taskService, IUserService userService)
         {
             _taskService = taskService;
             _userService = userService;
@@ -36,13 +36,13 @@ namespace ProjectManagementSystem.Controllers
         public async Task<IActionResult> Create(int projectId)
         {
             ViewBag.ProjectId = projectId;
-            ViewBag.Users = await _userService.GetAllUsersAsync(); // For assignment dropdown
+            ViewBag.Users = await _userService.GetAllUsersAsync();
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Task task)
+        public async Task<IActionResult> Create(ProjectTask task)
         {
             if (ModelState.IsValid)
             {
@@ -64,7 +64,7 @@ namespace ProjectManagementSystem.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, Task task)
+        public async Task<IActionResult> Edit(int id, ProjectTask task)
         {
             if (id != task.Id) return NotFound();
             if (ModelState.IsValid)
@@ -89,6 +89,7 @@ namespace ProjectManagementSystem.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var task = await _taskService.GetTaskByIdAsync(id);
+            if (task == null) return NotFound();
             await _taskService.DeleteTaskAsync(id);
             return RedirectToAction("Index", new { projectId = task.ProjectId });
         }

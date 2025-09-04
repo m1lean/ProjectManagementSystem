@@ -14,15 +14,15 @@ namespace ProjectManagementSystem.Controllers
             _projectService = projectService;
         }
 
-        // List with filter
-        public async Task<IActionResult> Index(string status)
+        // List all projects
+        public async Task<IActionResult> Index(string statusFilter = null)
         {
-            var projects = await _projectService.GetAllProjectsAsync(status);
-            ViewBag.Status = status; // For filter display
+            var projects = await _projectService.GetAllProjectsAsync(statusFilter);
+            ViewBag.StatusFilter = statusFilter;
             return View(projects);
         }
 
-        // Details (view project, includes tasks and participants)
+        // Details
         public async Task<IActionResult> Details(int id)
         {
             var project = await _projectService.GetProjectByIdAsync(id);

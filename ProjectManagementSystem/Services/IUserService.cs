@@ -7,14 +7,11 @@ namespace ProjectManagementSystem.Services
     public interface IUserService
     {
         Task<IEnumerable<User>> GetAllUsersAsync();
-        Task<User> GetUserByIdAsync(int id);
+        Task<User?> GetUserByIdAsync(int id); // Changed to User?
         Task CreateUserAsync(User user);
         Task UpdateUserAsync(User user);
         Task DeleteUserAsync(int id);
-
-        // For participants
-        Task<IEnumerable<User>> GetParticipantsByProjectIdAsync(int projectId);
-        Task AddParticipantToProjectAsync(int projectId, int userId);
-        Task RemoveParticipantFromProjectAsync(int projectId, int userId);
+        Task AddUserToProjectAsync(int userId, int projectId);
+        Task RemoveUserFromProjectAsync(int userId, int projectId);
     }
 }

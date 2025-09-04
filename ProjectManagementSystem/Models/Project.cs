@@ -8,13 +8,13 @@ namespace ProjectManagementSystem.Models
         public int Id { get; set; }
 
         [Required]
-        public string Name { get; set; }
+        public string? Name { get; set; } // Nullable but required
 
-        public string Description { get; set; }
+        public string? Description { get; set; } // Made nullable
 
-        public string Status { get; set; } // e.g., "Open", "In Progress", "Closed"
+        public string? Status { get; set; } // Made nullable
 
-        public ICollection<Task> Tasks { get; set; } = new List<Task>();
+        public ICollection<ProjectTask> ProjectTasks { get; set; } = new List<ProjectTask>();
         public ICollection<ProjectUser> ProjectUsers { get; set; } = new List<ProjectUser>();
     }
 }

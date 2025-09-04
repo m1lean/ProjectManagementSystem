@@ -2,7 +2,6 @@
 using ProjectManagementSystem.Data;
 using ProjectManagementSystem.Models;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace ProjectManagementSystem.Services
@@ -18,10 +17,13 @@ namespace ProjectManagementSystem.Services
 
         public async Task<IEnumerable<User>> GetAllUsersAsync()
         {
-            return await _context.Users.ToListAsync();
+            return await _context.Users
+                .Include(u => u.ProjectUsers).ThenInclude(pu => pu.Project)
+                .Include(u => u.AssignedTasks)
+                .ToListAsync();
         }
 
-        public async Task<User> GetUserByIdAsync(int id)
+        public async Task<User?> GetUserByIdAsync(int id) // Changed to User?
         {
             return await _context.Users
                 .Include(u => u.ProjectUsers).ThenInclude(pu => pu.Project)
@@ -51,29 +53,19 @@ namespace ProjectManagementSystem.Services
             }
         }
 
-        public async Task<IEnumerable<User>> GetParticipantsByProjectIdAsync(int projectId)
+        public async Task AddUserToProjectAsync(int userId, int projectId)
         {
-            return await _context.ProjectUsers
-                .Where(pu => pu.ProjectId == projectId)
-                .Select(pu => pu.User)
-                .ToListAsync();
+            _context.ProjectUsers.Add(new ProjectUser { UserId = userId, ProjectId = projectId });
+            await _context.SaveChangesAsync();
         }
 
-        public async Task AddParticipantToProjectAsync(int projectId, int userId)
+        public async Task RemoveUserFromProjectAsync(int userId, int projectId)
         {
-            if (!await _context.ProjectUsers.AnyAsync(pu => pu.ProjectId == projectId && pu.UserId == userId))
+            var projectUser = await _context.ProjectUsers
+                .FirstOrDefaultAsync(pu => pu.UserId == userId && pu.ProjectId == projectId);
+            if (projectUser != null)
             {
-                _context.ProjectUsers.Add(new ProjectUser { ProjectId = projectId, UserId = userId });
-                await _context.SaveChangesAsync();
-            }
-        }
-
-        public async Task RemoveParticipantFromProjectAsync(int projectId, int userId)
-        {
-            var pu = await _context.ProjectUsers.FirstOrDefaultAsync(pu => pu.ProjectId == projectId && pu.UserId == userId);
-            if (pu != null)
-            {
-                _context.ProjectUsers.Remove(pu);
+                _context.ProjectUsers.Remove(projectUser);
                 await _context.SaveChangesAsync();
             }
         }

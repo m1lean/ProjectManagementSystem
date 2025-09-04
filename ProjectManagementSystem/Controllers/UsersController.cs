@@ -29,7 +29,7 @@ namespace ProjectManagementSystem.Controllers
             return View(user);
         }
 
-        // Create user
+        // Create
         public IActionResult Create()
         {
             return View();
@@ -47,7 +47,7 @@ namespace ProjectManagementSystem.Controllers
             return View(user);
         }
 
-        // Edit user
+        // Edit
         public async Task<IActionResult> Edit(int id)
         {
             var user = await _userService.GetUserByIdAsync(id);
@@ -68,7 +68,7 @@ namespace ProjectManagementSystem.Controllers
             return View(user);
         }
 
-        // Delete user
+        // Delete
         public async Task<IActionResult> Delete(int id)
         {
             var user = await _userService.GetUserByIdAsync(id);
@@ -84,29 +84,26 @@ namespace ProjectManagementSystem.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        // Participants for a project (view)
+        // Manage project participants
         public async Task<IActionResult> Participants(int projectId)
         {
-            var participants = await _userService.GetParticipantsByProjectIdAsync(projectId);
+            var users = await _userService.GetAllUsersAsync();
             ViewBag.ProjectId = projectId;
-            ViewBag.AllUsers = await _userService.GetAllUsersAsync(); // For add dropdown
-            return View(participants);
+            return View(users);
         }
 
-        // Add participant
         [HttpPost]
         public async Task<IActionResult> AddParticipant(int projectId, int userId)
         {
-            await _userService.AddParticipantToProjectAsync(projectId, userId);
-            return RedirectToAction("Participants", new { projectId });
+            await _userService.AddUserToProjectAsync(userId, projectId);
+            return RedirectToAction("Details", "Projects", new { id = projectId });
         }
 
-        // Remove participant
         [HttpPost]
         public async Task<IActionResult> RemoveParticipant(int projectId, int userId)
         {
-            await _userService.RemoveParticipantFromProjectAsync(projectId, userId);
-            return RedirectToAction("Participants", new { projectId });
+            await _userService.RemoveUserFromProjectAsync(userId, projectId);
+            return RedirectToAction("Details", "Projects", new { id = projectId });
         }
     }
 }
