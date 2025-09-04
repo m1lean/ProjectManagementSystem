@@ -16,17 +16,35 @@
 <h1>Create Project</h1>
 
 <form asp-action="Create">
-    <label asp-for="Name"></label>
-    <input asp-for="Name" />
-    <span asp-validation-for="Name"></span>
+    <div class="form-group">
+        <label asp-for="Name">Название проекта</label>
+        <input asp-for="Name" class="form-control" required />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
 
-    <label asp-for="Description"></label>
-    <textarea asp-for="Description"></textarea>
+    <div class="form-group">
+        <label asp-for="Description">Описание</label>
+        <textarea asp-for="Description" class="form-control" rows="3"></textarea>
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
 
-    <label asp-for="Status"></label>
-    <input asp-for="Status" />
+    <div class="form-group">
+        <label asp-for="Status">Статус</label>
+        <select asp-for="Status" class="form-control" required>
+            <option value="Open">Открыт</option>
+            <option value="InProgress">В работе</option>
+            <option value="Completed">Завершен</option>
+        </select>
+        <span asp-validation-for="Status" class="text-danger"></span>
+    </div>
 
-    <button type="submit">Create</button>
+    <div class="form-group mt-3">
+        <button type="submit" class="btn btn-primary">Создать проект</button>
+    </div>
 </form>
 
 <a asp-action="Index">Back</a>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

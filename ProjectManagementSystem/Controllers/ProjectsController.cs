@@ -15,7 +15,7 @@ namespace ProjectManagementSystem.Controllers
         }
 
         // List all projects
-        public async Task<IActionResult> Index(string statusFilter = null)
+        public async Task<IActionResult> Index(string? statusFilter = null)
         {
             var projects = await _projectService.GetAllProjectsAsync(statusFilter);
             ViewBag.StatusFilter = statusFilter;
@@ -31,9 +31,10 @@ namespace ProjectManagementSystem.Controllers
         }
 
         // Create
+        [HttpGet]
         public IActionResult Create()
         {
-            return View();
+            return View(new Project { Status = "Open" });
         }
 
         [HttpPost]

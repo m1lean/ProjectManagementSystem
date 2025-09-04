@@ -19,7 +19,7 @@
     <dt>Assigned To</dt>
     <dd>@(Model.AssignedUser?.Name ?? "Unassigned")</dd>
     <dt>Project</dt>
-    <dd>@Model.Project.Name</dd>
+    <dd>@(Model.Project?.Name)</dd>
 </dl>
 
 <a asp-action="Index" asp-route-projectId="@Model.ProjectId">Back to Tasks</a>

@@ -35,6 +35,21 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
+app.MapControllerRoute(
+    name: "projects",
+    pattern: "Projects/{action=Index}/{id?}",
+    defaults: new { controller = "Projects" });
+
+app.MapControllerRoute(
+    name: "tasks",
+    pattern: "Tasks/{action=Index}/{id?}",
+    defaults: new { controller = "Tasks" });
+
+app.MapControllerRoute(
+    name: "users",
+    pattern: "Users/{action=Index}/{id?}",
+    defaults: new { controller = "Users" });
+
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;

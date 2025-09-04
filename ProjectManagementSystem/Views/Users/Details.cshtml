@@ -31,7 +31,7 @@
         {
             <tr>
                 <td>@task.Title</td>
-                <td>@task.Project.Name</td>
+                <td>@(task.Project?.Name ?? "No Project")</td>
             </tr>
         }
         </tbody>
@@ -46,7 +46,7 @@
         @foreach (var pu in Model.ProjectUsers)
         {
             <tr>
-                <td>@pu.Project.Name</td>
+                <td>@(pu.Project?.Name ?? "Unknown Project")</td>
             </tr>
         }
         </tbody>

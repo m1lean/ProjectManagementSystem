@@ -24,12 +24,14 @@ namespace ProjectManagementSystem.Services
                 .ToListAsync();
         }
 
-        public async Task<ProjectTask?> GetTaskByIdAsync(int id) // Changed to ProjectTask?
+        public async Task<ProjectTask> GetTaskByIdAsync(int id) // Changed to ProjectTask?
         {
-            return await _context.ProjectTasks
+            var task = await _context.ProjectTasks
                 .Include(t => t.Project)
                 .Include(t => t.AssignedUser)
                 .FirstOrDefaultAsync(t => t.Id == id);
+            
+            return task ?? throw new KeyNotFoundException($"Task with ID {id} not found");
         }
 
         public async Task CreateTaskAsync(ProjectTask task)

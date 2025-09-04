@@ -2,15 +2,26 @@
     ViewData["Title"] = "Home Page";
 }
 
-<style>
-    body { font-family: Arial, sans-serif; }
-    h1 { color: #333; }
-    a { color: #2196F3; text-decoration: none; }
-</style>
-
-<h1>Welcome to the Project Management System</h1>
-<p>
-    <a asp-controller="Projects" asp-action="Index">View Projects</a> |
-    <a asp-controller="Users" asp-action="Index">View Users</a> |
-    <a asp-controller="Tasks" asp-action="Index" asp-route-projectId="1">View Tasks</a>
-</p>
+<div class="text-center">
+    <h1 class="display-4">Welcome to Project Management System</h1>
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Projects</h5>
+                    <p class="card-text">Total Projects: @ViewBag.ProjectCount</p>
+                    <a asp-controller="Projects" asp-action="Index" class="btn btn-primary">View Projects</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Users</h5>
+                    <p class="card-text">Total Users: @ViewBag.UserCount</p>
+                    <a asp-controller="Users" asp-action="Index" class="btn btn-primary">View Users</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -7,12 +7,15 @@ namespace ProjectManagementSystem.Models
     {
         public int Id { get; set; }
 
-        [Required]
-        public string? Name { get; set; } // Nullable but required
+        [Required(ErrorMessage = "Название проекта обязательно")]
+        [StringLength(100, ErrorMessage = "Название не должно превышать 100 символов")]
+        public string Name { get; set; }
 
-        public string? Description { get; set; } // Made nullable
+        [StringLength(500, ErrorMessage = "Описание не должно превышать 500 символов")]
+        public string Description { get; set; } = string.Empty;
 
-        public string? Status { get; set; } // Made nullable
+        [Required(ErrorMessage = "Статус проекта обязателен")]
+        public string Status { get; set; } = "Open";
 
         public ICollection<ProjectTask> ProjectTasks { get; set; } = new List<ProjectTask>();
         public ICollection<ProjectUser> ProjectUsers { get; set; } = new List<ProjectUser>();
