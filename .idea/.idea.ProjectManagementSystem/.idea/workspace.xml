@@ -10,9 +10,33 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="52dbd47b-44c0-4220-ac25-fd57ec1e350c" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ProjectManagementSystem/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ProjectManagementSystem/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectManagementSystem/Properties/launchSettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectManagementSystem/Properties/launchSettings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectManagementSystem/Controllers/ProjectsController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectManagementSystem/Controllers/ProjectsController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectManagementSystem/Controllers/TasksController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectManagementSystem/Controllers/TasksController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectManagementSystem/Controllers/UsersController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectManagementSystem/Controllers/UsersController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectManagementSystem/Models/ProjectTask.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectManagementSystem/Models/ProjectTask.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectManagementSystem/Models/ProjectUser.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectManagementSystem/Models/ProjectUser.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectManagementSystem/Models/User.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectManagementSystem/Models/User.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectManagementSystem/Services/IUserService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectManagementSystem/Services/IUserService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectManagementSystem/Services/UserService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectManagementSystem/Services/UserService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectManagementSystem/Views/Home/Index.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectManagementSystem/Views/Home/Index.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectManagementSystem/Views/Projects/Delete.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectManagementSystem/Views/Projects/Delete.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectManagementSystem/Views/Projects/Details.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectManagementSystem/Views/Projects/Details.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectManagementSystem/Views/Shared/_Layout.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectManagementSystem/Views/Shared/_Layout.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectManagementSystem/bin/Debug/net9.0/ProjectManagementSystem.dll" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectManagementSystem/bin/Debug/net9.0/ProjectManagementSystem.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectManagementSystem/bin/Debug/net9.0/ProjectManagementSystem.exe" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectManagementSystem/bin/Debug/net9.0/ProjectManagementSystem.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectManagementSystem/bin/Debug/net9.0/ProjectManagementSystem.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectManagementSystem/bin/Debug/net9.0/ProjectManagementSystem.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectManagementSystem/obj/Debug/net9.0/ProjectManagementSystem.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectManagementSystem/obj/Debug/net9.0/ProjectManagementSystem.AssemblyInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectManagementSystem/obj/Debug/net9.0/ProjectManagementSystem.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectManagementSystem/obj/Debug/net9.0/ProjectManagementSystem.AssemblyInfoInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectManagementSystem/obj/Debug/net9.0/ProjectManagementSystem.dll" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectManagementSystem/obj/Debug/net9.0/ProjectManagementSystem.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectManagementSystem/obj/Debug/net9.0/ProjectManagementSystem.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectManagementSystem/obj/Debug/net9.0/ProjectManagementSystem.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectManagementSystem/obj/Debug/net9.0/ProjectManagementSystem.sourcelink.json" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectManagementSystem/obj/Debug/net9.0/ProjectManagementSystem.sourcelink.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectManagementSystem/obj/Debug/net9.0/apphost.exe" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectManagementSystem/obj/Debug/net9.0/apphost.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectManagementSystem/obj/Debug/net9.0/ref/ProjectManagementSystem.dll" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectManagementSystem/obj/Debug/net9.0/ref/ProjectManagementSystem.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectManagementSystem/obj/Debug/net9.0/refint/ProjectManagementSystem.dll" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectManagementSystem/obj/Debug/net9.0/refint/ProjectManagementSystem.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectManagementSystem/obj/Debug/net9.0/rjsmcshtml.dswa.cache.json" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectManagementSystem/obj/Debug/net9.0/rjsmcshtml.dswa.cache.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectManagementSystem/obj/Debug/net9.0/rjsmrazor.dswa.cache.json" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectManagementSystem/obj/Debug/net9.0/rjsmrazor.dswa.cache.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectManagementSystem/obj/Debug/net9.0/rpswa.dswa.cache.json" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectManagementSystem/obj/Debug/net9.0/rpswa.dswa.cache.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -130,6 +154,7 @@
       <option name="presentableId" value="Default" />
       <updated>1757004891318</updated>
       <workItem from="1757004892552" duration="4071000" />
+      <workItem from="1757028955886" duration="473000" />
     </task>
     <servers />
   </component>

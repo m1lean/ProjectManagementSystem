@@ -23,7 +23,7 @@ namespace ProjectManagementSystem.Services
                 .ToListAsync();
         }
 
-        public async Task<User?> GetUserByIdAsync(int id) // Changed to User?
+        public async Task<User?> GetUserByIdAsync(int id)
         {
             return await _context.Users
                 .Include(u => u.ProjectUsers).ThenInclude(pu => pu.Project)

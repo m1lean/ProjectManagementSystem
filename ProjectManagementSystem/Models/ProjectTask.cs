@@ -7,14 +7,14 @@ namespace ProjectManagementSystem.Models
         public int Id { get; set; }
 
         [Required]
-        public string? Title { get; set; } // Nullable but required (enforced by validation)
+        public string? Title { get; set; }
 
-        public string? Description { get; set; } // Made nullable
+        public string? Description { get; set; }
 
         public int ProjectId { get; set; }
-        public Project? Project { get; set; } // Made nullable
+        public Project? Project { get; set; }
 
         public int? AssignedUserId { get; set; }
-        public User? AssignedUser { get; set; } // Made nullable
+        public User? AssignedUser { get; set; }
     }
 }

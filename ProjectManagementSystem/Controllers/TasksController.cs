@@ -16,15 +16,13 @@ namespace ProjectManagementSystem.Controllers
             _userService = userService;
         }
 
-        // List tasks for a project
         public async Task<IActionResult> Index(int projectId)
         {
             var tasks = await _taskService.GetTasksByProjectIdAsync(projectId);
             ViewBag.ProjectId = projectId;
             return View(tasks);
         }
-
-        // Details
+        
         public async Task<IActionResult> Details(int id)
         {
             var task = await _taskService.GetTaskByIdAsync(id);
@@ -32,7 +30,6 @@ namespace ProjectManagementSystem.Controllers
             return View(task);
         }
 
-        // Create
         public async Task<IActionResult> Create(int projectId)
         {
             ViewBag.ProjectId = projectId;
@@ -53,7 +50,6 @@ namespace ProjectManagementSystem.Controllers
             return View(task);
         }
 
-        // Edit
         public async Task<IActionResult> Edit(int id)
         {
             var task = await _taskService.GetTaskByIdAsync(id);
@@ -76,7 +72,6 @@ namespace ProjectManagementSystem.Controllers
             return View(task);
         }
 
-        // Delete
         public async Task<IActionResult> Delete(int id)
         {
             var task = await _taskService.GetTaskByIdAsync(id);

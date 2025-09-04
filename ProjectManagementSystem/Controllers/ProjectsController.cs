@@ -13,8 +13,7 @@ namespace ProjectManagementSystem.Controllers
         {
             _projectService = projectService;
         }
-
-        // List all projects
+        
         public async Task<IActionResult> Index(string? statusFilter = null)
         {
             var projects = await _projectService.GetAllProjectsAsync(statusFilter);
@@ -22,7 +21,6 @@ namespace ProjectManagementSystem.Controllers
             return View(projects);
         }
 
-        // Details
         public async Task<IActionResult> Details(int id)
         {
             var project = await _projectService.GetProjectByIdAsync(id);
@@ -30,7 +28,6 @@ namespace ProjectManagementSystem.Controllers
             return View(project);
         }
 
-        // Create
         [HttpGet]
         public IActionResult Create()
         {
@@ -49,7 +46,6 @@ namespace ProjectManagementSystem.Controllers
             return View(project);
         }
 
-        // Edit
         public async Task<IActionResult> Edit(int id)
         {
             var project = await _projectService.GetProjectByIdAsync(id);
@@ -70,7 +66,6 @@ namespace ProjectManagementSystem.Controllers
             return View(project);
         }
 
-        // Delete
         public async Task<IActionResult> Delete(int id)
         {
             var project = await _projectService.GetProjectByIdAsync(id);

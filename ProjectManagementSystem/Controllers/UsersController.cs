@@ -14,14 +14,12 @@ namespace ProjectManagementSystem.Controllers
             _userService = userService;
         }
 
-        // List all users
         public async Task<IActionResult> Index()
         {
             var users = await _userService.GetAllUsersAsync();
             return View(users);
         }
 
-        // Details
         public async Task<IActionResult> Details(int id)
         {
             var user = await _userService.GetUserByIdAsync(id);
@@ -29,7 +27,6 @@ namespace ProjectManagementSystem.Controllers
             return View(user);
         }
 
-        // Create
         public IActionResult Create()
         {
             return View();
@@ -47,7 +44,6 @@ namespace ProjectManagementSystem.Controllers
             return View(user);
         }
 
-        // Edit
         public async Task<IActionResult> Edit(int id)
         {
             var user = await _userService.GetUserByIdAsync(id);
@@ -68,7 +64,6 @@ namespace ProjectManagementSystem.Controllers
             return View(user);
         }
 
-        // Delete
         public async Task<IActionResult> Delete(int id)
         {
             var user = await _userService.GetUserByIdAsync(id);
@@ -84,7 +79,6 @@ namespace ProjectManagementSystem.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        // Manage project participants
         public async Task<IActionResult> Participants(int projectId)
         {
             var users = await _userService.GetAllUsersAsync();
