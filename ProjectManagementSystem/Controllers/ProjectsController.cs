@@ -1,0 +1,88 @@
+﻿using Microsoft.AspNetCore.Mvc;
+using ProjectManagementSystem.Models;
+using ProjectManagementSystem.Services;
+using System.Threading.Tasks;
+
+namespace ProjectManagementSystem.Controllers
+{
+    public class ProjectsController : Controller
+    {
+        private readonly IProjectService _projectService;
+
+        public ProjectsController(IProjectService projectService)
+        {
+            _projectService = projectService;
+        }
+
+        // List with filter
+        public async Task<IActionResult> Index(string status)
+        {
+            var projects = await _projectService.GetAllProjectsAsync(status);
+            ViewBag.Status = status; // For filter display
+            return View(projects);
+        }
+
+        // Details (view project, includes tasks and participants)
+        public async Task<IActionResult> Details(int id)
+        {
+            var project = await _projectService.GetProjectByIdAsync(id);
+            if (project == null) return NotFound();
+            return View(project);
+        }
+
+        // Create
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(Project project)
+        {
+            if (ModelState.IsValid)
+            {
+                await _projectService.CreateProjectAsync(project);
+                return RedirectToAction(nameof(Index));
+            }
+            return View(project);
+        }
+
+        // Edit
+        public async Task<IActionResult> Edit(int id)
+        {
+            var project = await _projectService.GetProjectByIdAsync(id);
+            if (project == null) return NotFound();
+            return View(project);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, Project project)
+        {
+            if (id != project.Id) return NotFound();
+            if (ModelState.IsValid)
+            {
+                await _projectService.UpdateProjectAsync(project);
+                return RedirectToAction(nameof(Index));
+            }
+            return View(project);
+        }
+
+        // Delete
+        public async Task<IActionResult> Delete(int id)
+        {
+            var project = await _projectService.GetProjectByIdAsync(id);
+            if (project == null) return NotFound();
+            return View(project);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            await _projectService.DeleteProjectAsync(id);
+            return RedirectToAction(nameof(Index));
+        }
+    }
+}
