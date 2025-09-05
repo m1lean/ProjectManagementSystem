@@ -15,7 +15,7 @@ namespace ProjectManagementSystem.Models
 
         [Required]
         public int ProjectId { get; set; }
-        public Project Project { get; set; } = null!;
+        public Project? Project { get; set; }
 
         public int? AssignedUserId { get; set; }
         public User? AssignedUser { get; set; }

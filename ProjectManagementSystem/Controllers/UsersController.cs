@@ -81,9 +81,10 @@ namespace ProjectManagementSystem.Controllers
 
         public async Task<IActionResult> Participants(int projectId)
         {
-            var users = await _userService.GetAllUsersAsync();
+            var participants = await _userService.GetUsersByProjectIdAsync(projectId) ?? new List<ProjectManagementSystem.Models.User>();
             ViewBag.ProjectId = projectId;
-            return View(users);
+            ViewBag.AllUsers = await _userService.GetAllUsersAsync() ?? new List<ProjectManagementSystem.Models.User>();
+            return View(participants);
         }
 
         [HttpPost]

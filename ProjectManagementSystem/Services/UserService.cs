@@ -2,6 +2,7 @@
 using ProjectManagementSystem.Data;
 using ProjectManagementSystem.Models;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace ProjectManagementSystem.Services
@@ -55,8 +56,12 @@ namespace ProjectManagementSystem.Services
 
         public async Task AddUserToProjectAsync(int userId, int projectId)
         {
-            _context.ProjectUsers.Add(new ProjectUser { UserId = userId, ProjectId = projectId });
-            await _context.SaveChangesAsync();
+            var exists = await _context.ProjectUsers.AnyAsync(pu => pu.UserId == userId && pu.ProjectId == projectId);
+            if (!exists)
+            {
+                _context.ProjectUsers.Add(new ProjectUser { UserId = userId, ProjectId = projectId });
+                await _context.SaveChangesAsync();
+            }
         }
 
         public async Task RemoveUserFromProjectAsync(int userId, int projectId)
@@ -68,6 +73,16 @@ namespace ProjectManagementSystem.Services
                 _context.ProjectUsers.Remove(projectUser);
                 await _context.SaveChangesAsync();
             }
+        }
+
+        public async Task<List<User>> GetUsersByProjectIdAsync(int projectId)
+        {
+            return (await _context.ProjectUsers
+                .Where(pu => pu.ProjectId == projectId)
+                .Select(pu => pu.User)
+                .ToListAsync())
+                .Where(u => u != null)
+                .ToList()!;
         }
     }
 }

@@ -1,6 +1,6 @@
-﻿using ProjectManagementSystem.Models;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using ProjectManagementSystem.Models;
 
 namespace ProjectManagementSystem.Services
 {
@@ -13,5 +13,6 @@ namespace ProjectManagementSystem.Services
         Task DeleteUserAsync(int id);
         Task AddUserToProjectAsync(int userId, int projectId);
         Task RemoveUserFromProjectAsync(int userId, int projectId);
+        Task<List<User>> GetUsersByProjectIdAsync(int projectId);
     }
 }

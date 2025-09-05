@@ -16,6 +16,10 @@
 
 <h1>Create Task</h1>
 
+@* Вывод ошибок валидации *@
+<partial name="_ValidationScriptsPartial" />
+<div asp-validation-summary="All" class="text-danger"></div>
+
 <form asp-action="Create" class="needs-validation" novalidate>
     <div class="form-group mb-3">
         <input type="hidden" asp-for="ProjectId" value="@ViewBag.ProjectId" />
