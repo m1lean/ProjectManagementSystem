@@ -9,7 +9,7 @@ namespace ProjectManagementSystem.Models
 
         [Required(ErrorMessage = "Название проекта обязательно")]
         [StringLength(100, ErrorMessage = "Название не должно превышать 100 символов")]
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
         [StringLength(500, ErrorMessage = "Описание не должно превышать 500 символов")]
         public string Description { get; set; } = string.Empty;

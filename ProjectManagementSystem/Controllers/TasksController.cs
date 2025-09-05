@@ -34,7 +34,7 @@ namespace ProjectManagementSystem.Controllers
         {
             ViewBag.ProjectId = projectId;
             ViewBag.Users = await _userService.GetAllUsersAsync();
-            return View();
+            return View(new ProjectTask { ProjectId = projectId });
         }
 
         [HttpPost]
