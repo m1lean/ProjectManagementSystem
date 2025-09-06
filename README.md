@@ -76,7 +76,7 @@ ProjectManagementSystem/
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/m1lean/project-management-system.git
+   git clone https://github.com/m1lean/ProjectManagementSystem.git
    cd project-management-system
    ```
 
@@ -171,7 +171,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
 ## 📧 Contact
 
-Project Link: [https://github.com/m1lean/project-management-system](https://github.com/m1lean/project-management-system)
+Project Link: [https://github.com/m1lean/ProjectManagementSystem](https://github.com/m1lean/project-management-system)
 
 ---
 
