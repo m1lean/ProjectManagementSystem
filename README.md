@@ -77,7 +77,7 @@ ProjectManagementSystem/
 1. **Clone the repository**
    ```bash
    git clone https://github.com/m1lean/ProjectManagementSystem.git
-   cd project-management-system
+   cd ProjectManagementSystem
    ```
 
 2. **Restore dependencies**
