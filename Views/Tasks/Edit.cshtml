@@ -1,0 +1,38 @@
+﻿@using Microsoft.AspNetCore.Mvc.Rendering
+@model ProjectManagementSystem.Models.ProjectTask
+
+@{
+    ViewData["Title"] = "Edit Task";
+}
+
+<style>
+    body { font-family: Arial, sans-serif; }
+    form { max-width: 500px; }
+    label { display: block; margin-top: 10px; }
+    input, textarea, select { width: 100%; padding: 8px; }
+    button { background-color: #4CAF50; color: white; padding: 10px; border: none; cursor: pointer; }
+    a { color: #2196F3; text-decoration: none; }
+</style>
+
+<h1>Edit Task</h1>
+
+<form asp-action="Edit">
+    <input type="hidden" asp-for="Id" />
+    <input type="hidden" asp-for="ProjectId" />
+
+    <label asp-for="Title"></label>
+    <input asp-for="Title" />
+    <span asp-validation-for="Title"></span>
+
+    <label asp-for="Description"></label>
+    <textarea asp-for="Description"></textarea>
+
+    <label asp-for="AssignedUserId">Assign To</label>
+    <select asp-for="AssignedUserId" asp-items="@(new SelectList(ViewBag.Users, "Id", "Name"))">
+        <option value="">Unassigned</option>
+    </select>
+
+    <button type="submit">Save</button>
+</form>
+
+<a asp-action="Index" asp-route-projectId="@Model.ProjectId">Back</a>

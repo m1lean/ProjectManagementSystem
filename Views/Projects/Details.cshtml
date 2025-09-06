@@ -1,0 +1,55 @@
+﻿@model ProjectManagementSystem.Models.Project
+
+@{
+    ViewData["Title"] = "Project Details";
+}
+
+<style>
+    body { font-family: Inter, sans-serif; }
+    h2 { color: #333; }
+    dl { margin: 20px 0; }
+    dt { font-weight: bold; }
+    .section { margin-top: 30px; }
+    table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+    th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+    th { background-color: #f2f2f2; }
+    a { color: #2196F3; text-decoration: none; }
+</style>
+
+<h1>@Model.Name</h1>
+<dl>
+    <dt>Description</dt>
+    <dd>@Model.Description</dd>
+    <dt>Status</dt>
+    <dd>@Model.Status</dd>
+</dl>
+
+<div class="section">
+    <h2>Tasks</h2>
+    <a asp-controller="Tasks" asp-action="Create" asp-route-projectId="@Model.Id">Add Task</a>
+    <table>
+        <thead><tr><th>Title</th><th>Description</th><th>Assigned To</th><th>Actions</th></tr></thead>
+        <tbody>
+        @foreach (var task in Model.ProjectTasks)
+        {
+            <tr>
+                <td>@task.Title</td>
+                <td>@task.Description</td>
+                <td>@(task.AssignedUser?.Name ?? "Unassigned")</td>
+                <td>
+                    <a asp-controller="Tasks" asp-action="Details" asp-route-id="@task.Id">Details</a> |
+                    <a asp-controller="Tasks" asp-action="Edit" asp-route-id="@task.Id">Edit</a> |
+                    <a asp-controller="Tasks" asp-action="Delete" asp-route-id="@task.Id">Delete</a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
+
+<div class="section">
+    <h2>Participants</h2>
+    <a asp-controller="Users" asp-action="Participants" asp-route-projectId="@Model.Id">View/Manage Participants</a>
+</div>
+
+<a asp-action="Index">Back to List</a>

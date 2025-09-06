@@ -1,0 +1,28 @@
+﻿@model ProjectManagementSystem.Models.User
+
+@{
+    ViewData["Title"] = "Create User";
+}
+
+<style>
+    body { font-family: Arial, sans-serif; }
+    form { max-width: 500px; }
+    label { display: block; margin-top: 10px; }
+    input { width: 100%; padding: 8px; }
+    button { background-color: #4CAF50; color: white; padding: 10px; border: none; cursor: pointer; }
+    a { color: #2196F3; text-decoration: none; }
+</style>
+
+<h1>Create User</h1>
+
+<form asp-action="Create">
+    <label asp-for="Name"></label>
+    <input asp-for="Name" />
+
+    <label asp-for="Email"></label>
+    <input asp-for="Email" />
+
+    <button type="submit">Create</button>
+</form>
+
+<a asp-action="Index">Back</a>

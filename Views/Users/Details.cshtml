@@ -1,0 +1,56 @@
+﻿@model ProjectManagementSystem.Models.User
+
+@{
+    ViewData["Title"] = "User Details";
+}
+
+<style>
+    body { font-family: Arial, sans-serif; }
+    h2 { color: #333; }
+    dl { margin: 20px 0; }
+    dt { font-weight: bold; }
+    .section { margin-top: 30px; }
+    table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+    th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+    th { background-color: #f2f2f2; }
+    a { color: #2196F3; text-decoration: none; }
+</style>
+
+<h1>@Model.Name</h1>
+<dl>
+    <dt>Email</dt>
+    <dd>@Model.Email</dd>
+</dl>
+
+<div class="section">
+    <h2>Assigned Tasks</h2>
+    <table>
+        <thead><tr><th>Title</th><th>Project</th></tr></thead>
+        <tbody>
+        @foreach (var task in Model.AssignedTasks)
+        {
+            <tr>
+                <td>@task.Title</td>
+                <td>@(task.Project?.Name ?? "No Project")</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
+
+<div class="section">
+    <h2>Projects</h2>
+    <table>
+        <thead><tr><th>Name</th></tr></thead>
+        <tbody>
+        @foreach (var pu in Model.ProjectUsers)
+        {
+            <tr>
+                <td>@(pu.Project?.Name ?? "Unknown Project")</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
+
+<a asp-action="Index">Back to List</a>

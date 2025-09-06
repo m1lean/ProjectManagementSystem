@@ -1,0 +1,55 @@
+﻿@using Microsoft.AspNetCore.Mvc.Rendering
+@model IEnumerable<ProjectManagementSystem.Models.User>
+
+@{
+    ViewData["Title"] = "Participants";
+}
+
+<style>
+    body { font-family: Arial, sans-serif; }
+    table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+    th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+    th { background-color: #f2f2f2; }
+    button { background-color: #f44336; color: white; padding: 5px; border: none; cursor: pointer; }
+    select { padding: 8px; }
+    .add-form button { background-color: #4CAF50; }
+    a { color: #2196F3; text-decoration: none; }
+</style>
+
+<h1>Participants for Project</h1>
+
+@if (Model != null && Model.Any())
+{
+    <table>
+        <thead><tr><th>Name</th><th>Email</th><th>Actions</th></tr></thead>
+        <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.Name</td>
+                <td>@user.Email</td>
+                <td>
+                    <form asp-action="RemoveParticipant" method="post" style="display:inline;">
+                        <input type="hidden" name="projectId" value="@ViewBag.ProjectId" />
+                        <input type="hidden" name="userId" value="@user.Id" />
+                        <button type="submit">Remove</button>
+                    </form>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No participants found.</p>
+}
+
+<h2>Add Participant</h2>
+<form asp-action="AddParticipant" method="post" class="add-form">
+    <input type="hidden" name="projectId" value="@ViewBag.ProjectId" />
+    <select name="userId" asp-items="@(new SelectList(ViewBag.AllUsers ?? new List<ProjectManagementSystem.Models.User>(), "Id", "Name"))"></select>
+    <button type="submit">Add</button>
+</form>
+
+<a asp-controller="Projects" asp-action="Details" asp-route-id="@ViewBag.ProjectId">Back to Project</a>
