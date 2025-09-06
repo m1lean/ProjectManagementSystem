@@ -169,10 +169,6 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 - [ ] Mobile responsiveness
 - [ ] Unit and integration tests
 
-## 📧 Contact
-
-Project Link: [Click](https://github.com/m1lean/ProjectManagementSystem)
-
 ---
 
 ⭐ Don't forget to give the project a star if you found it helpful!
