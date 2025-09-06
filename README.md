@@ -76,7 +76,7 @@ ProjectManagementSystem/
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/project-management-system.git
+   git clone https://github.com/m1lean/project-management-system.git
    cd project-management-system
    ```
 
@@ -92,7 +92,7 @@ ProjectManagementSystem/
 
 4. **Open in browser**
    ```
-   http://localhost:5169
+   http://localhost:5000
    ```
 
 ### Running in JetBrains Rider
@@ -169,23 +169,9 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 - [ ] Mobile responsiveness
 - [ ] Unit and integration tests
 
-## 🤝 Contributing
-
-1. Fork the project
-2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-## 📝 License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
 ## 📧 Contact
 
-Your Name - [@yourusername](https://github.com/yourusername)
-
-Project Link: [https://github.com/yourusername/project-management-system](https://github.com/yourusername/project-management-system)
+Project Link: [https://github.com/m1lean/project-management-system](https://github.com/m1lean/project-management-system)
 
 ---
 
