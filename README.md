@@ -171,7 +171,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
 ## 📧 Contact
 
-Project Link: [https://github.com/m1lean/ProjectManagementSystem](https://github.com/m1lean/project-management-system)
+Project Link: [Click](https://github.com/m1lean/ProjectManagementSystem)
 
 ---
 
