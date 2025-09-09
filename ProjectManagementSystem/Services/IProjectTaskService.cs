@@ -1,10 +1,10 @@
-﻿using ProjectManagementSystem.Models;
+using ProjectManagementSystem.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace ProjectManagementSystem.Services
 {
-    public interface ITaskService
+    public interface IProjectTaskService
     {
         Task<List<ProjectTask>> GetTasksByProjectIdAsync(int projectId);
         Task<ProjectTask> GetTaskByIdAsync(int id);

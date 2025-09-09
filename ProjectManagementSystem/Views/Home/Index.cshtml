@@ -1,27 +1,89 @@
-﻿@{
-    ViewData["Title"] = "Home";
+﻿@using ProjectManagementSystem.Models
+@inject ProjectManagementSystem.Services.IProjectService ProjectService
+@inject ProjectManagementSystem.Services.ITaskService TaskService
+
+@{
+    ViewData["Title"] = "Dashboard";
+    var projects = await ProjectService.GetAllProjectsAsync() ?? new List<Project>();
+    var allTasks = new List<ProjectTask>();
+    foreach (var p in projects)
+    {
+        var tasks = await TaskService.GetTasksByProjectIdAsync(p.Id) ?? new List<ProjectTask>();
+        allTasks.AddRange(tasks);
+    }
+
+    var assignedTasks = allTasks.Where(t => t.AssignedUserId != null).ToList();
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome to Project Management System</h1>
-    <div class="row mt-4">
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Projects</h5>
-                    <p class="card-text">Total Projects: @ViewBag.ProjectCount</p>
-                    <a asp-controller="Projects" asp-action="Index" class="btn btn-primary">View Projects</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Users</h5>
-                    <p class="card-text">Total Users: @ViewBag.UserCount</p>
-                    <a asp-controller="Users" asp-action="Index" class="btn btn-primary">View Users</a>
-                </div>
-            </div>
-        </div>
+<div class="container">
+    <h1>Project Management</h1>
+    <p>Welcome — use the navigation to view Projects, Tasks and Users.</p>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <h3>Assigned Tasks</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Project</th>
+                    <th>Assigned To</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            @if (assignedTasks != null && assignedTasks.Any())
+            {
+                foreach (var t in assignedTasks)
+                {
+                    <tr>
+                        <td>@t.Title</td>
+                        <td>@((projects.FirstOrDefault(p => p.Id == t.ProjectId)?.Name) ?? "-")</td>
+                        <td>@(t.AssignedUser?.Name ?? "-")</td>
+                        <td>
+                            <a asp-controller="Tasks" asp-action="Details" asp-route-id="@t.Id">Details</a>
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr><td colspan="4">No assigned tasks</td></tr>
+            }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="card mt-4">
+    <div class="card-body">
+        <h3>Projects</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Project Name</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            @if (projects != null && projects.Any())
+            {
+                foreach (var p in projects)
+                {
+                    <tr>
+                        <td>@p.Name</td>
+                        <td>
+                            <a asp-controller="Projects" asp-action="Details" asp-route-id="@p.Id">Details</a>
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr><td colspan="2">No projects</td></tr>
+            }
+            </tbody>
+        </table>
     </div>
 </div>

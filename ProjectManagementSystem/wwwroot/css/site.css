@@ -1,0 +1,133 @@
+/* Common styles */
+:root {
+    --gradient-bg: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%);
+    --primary-gradient: linear-gradient(90deg, #4e54c8 0%, #8f94fb 100%);
+    --danger-gradient: linear-gradient(90deg, #ff416c 0%, #ff4b2b 100%);
+    --text-primary: #2c3e50;
+    --text-secondary: #34495e;
+}
+
+body {
+    background: var(--gradient-bg);
+    min-height: 100vh;
+    padding: 20px 0;
+}
+
+.card, .table-container, .details-container {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(44,62,80,0.08);
+    padding: 20px;
+    margin-bottom: 20px;
+    border: none;
+}
+
+.page-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 24px;
+}
+
+.btn-primary {
+    background: var(--primary-gradient);
+    border: none;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+.btn-primary:hover {
+    box-shadow: 0 4px 16px rgba(78,84,200,0.3);
+    background: linear-gradient(90deg, #8f94fb 0%, #4e54c8 100%);
+}
+
+.btn-danger {
+    background: var(--danger-gradient);
+    border: none;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+.btn-danger:hover {
+    box-shadow: 0 4px 16px rgba(255,65,108,0.3);
+    background: linear-gradient(90deg, #ff4b2b 0%, #ff416c 100%);
+}
+
+.table th {
+    background: #f8f9fa;
+    border-bottom: 2px solid #dee2e6;
+    color: var(--text-primary);
+}
+
+.action-links a {
+    margin: 0 5px;
+    color: #4e54c8;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.action-links a:hover {
+    color: #8f94fb;
+}
+
+/* Delete pages styles */
+.delete-container {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(44,62,80,0.08);
+    padding: 30px;
+    margin: 40px auto;
+    max-width: 500px;
+    text-align: center;
+}
+
+.warning-icon {
+    font-size: 48px;
+    color: #ff416c;
+    margin-bottom: 20px;
+}
+
+.warning-text {
+    background: rgba(255,65,108,0.1);
+    color: #ff416c;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 25px;
+    font-size: 1.1rem;
+}
+
+.info-box {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 25px;
+    text-align: left;
+}
+
+.btn-delete {
+    background: linear-gradient(90deg, #ff416c 0%, #ff4b2b 100%);
+    border: none;
+    color: white;
+    padding: 10px 30px;
+    border-radius: 8px;
+    font-weight: 500;
+    width: 100%;
+    margin-bottom: 10px;
+    transition: all 0.2s;
+}
+
+.btn-delete:hover {
+    box-shadow: 0 4px 16px rgba(255,65,108,0.3);
+    background: linear-gradient(90deg, #ff4b2b 0%, #ff416c 100%);
+}
+
+.btn-back {
+    color: #2c3e50;
+    text-decoration: none;
+    display: block;
+    transition: color 0.2s;
+}
+
+.btn-back:hover {
+    color: #4e54c8;
+}

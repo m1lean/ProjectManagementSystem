@@ -2,54 +2,126 @@
 @model IEnumerable<ProjectManagementSystem.Models.User>
 
 @{
-    ViewData["Title"] = "Participants";
+    ViewData["Title"] = "Project Participants";
 }
 
 <style>
-    body { font-family: Arial, sans-serif; }
-    table { width: 100%; border-collapse: collapse; margin: 20px 0; }
-    th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
-    th { background-color: #f2f2f2; }
-    button { background-color: #f44336; color: white; padding: 5px; border: none; cursor: pointer; }
-    select { padding: 8px; }
-    .add-form button { background-color: #4CAF50; }
-    a { color: #2196F3; text-decoration: none; }
+    body {
+        background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%);
+        min-height: 100vh;
+        padding: 20px 0;
+    }
+    .participants-container {
+        background: white;
+        border-radius: 16px;
+        box-shadow: 0 4px 24px rgba(44,62,80,0.08);
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+    .page-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #2c3e50;
+        margin-bottom: 24px;
+    }
+    .table {
+        margin-bottom: 0;
+    }
+    .table th {
+        background: #f8f9fa;
+        border-bottom: 2px solid #dee2e6;
+        color: #2c3e50;
+    }
+    .btn-remove {
+        background: linear-gradient(90deg, #ff416c 0%, #ff4b2b 100%);
+        border: none;
+        color: white;
+        padding: 5px 15px;
+        border-radius: 6px;
+        transition: all 0.2s;
+    }
+    .btn-remove:hover {
+        box-shadow: 0 4px 16px rgba(255,65,108,0.3);
+        background: linear-gradient(90deg, #ff4b2b 0%, #ff416c 100%);
+    }
+    .add-form {
+        background: white;
+        border-radius: 16px;
+        box-shadow: 0 4px 24px rgba(44,62,80,0.08);
+        padding: 20px;
+        margin: 20px 0;
+    }
+    .btn-add {
+        background: linear-gradient(90deg, #4e54c8 0%, #8f94fb 100%);
+        border: none;
+        color: white;
+        padding: 8px 20px;
+        border-radius: 6px;
+        transition: all 0.2s;
+    }
+    .btn-add:hover {
+        box-shadow: 0 4px 16px rgba(78,84,200,0.3);
+        background: linear-gradient(90deg, #8f94fb 0%, #4e54c8 100%);
+    }
+    .form-select {
+        border-radius: 6px;
+        border: 1px solid #dee2e6;
+        padding: 8px;
+        margin-right: 10px;
+    }
+    .btn-back {
+        color: #4e54c8;
+        text-decoration: none;
+        transition: color 0.2s;
+    }
+    .btn-back:hover {
+        color: #8f94fb;
+    }
 </style>
 
-<h1>Participants for Project</h1>
+<div class="container">
+    <h1 class="page-title">Participants for Project</h1>
 
-@if (Model != null && Model.Any())
-{
-    <table>
-        <thead><tr><th>Name</th><th>Email</th><th>Actions</th></tr></thead>
-        <tbody>
-        @foreach (var user in Model)
-        {
-            <tr>
-                <td>@user.Name</td>
-                <td>@user.Email</td>
-                <td>
-                    <form asp-action="RemoveParticipant" method="post" style="display:inline;">
-                        <input type="hidden" name="projectId" value="@ViewBag.ProjectId" />
-                        <input type="hidden" name="userId" value="@user.Id" />
-                        <button type="submit">Remove</button>
-                    </form>
-                </td>
-            </tr>
-        }
-        </tbody>
-    </table>
-}
-else
-{
-    <p>No participants found.</p>
-}
+    <div class="participants-container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var user in Model ?? Enumerable.Empty<User>())
+                {
+                    <tr>
+                        <td>@user.Name</td>
+                        <td>@user.Email</td>
+                        <td>
+                            <form asp-action="RemoveParticipant" method="post" style="display:inline;">
+                                <input type="hidden" name="projectId" value="@ViewBag.ProjectId" />
+                                <input type="hidden" name="userId" value="@user.Id" />
+                                <button type="submit" class="btn-remove">Remove</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 
-<h2>Add Participant</h2>
-<form asp-action="AddParticipant" method="post" class="add-form">
-    <input type="hidden" name="projectId" value="@ViewBag.ProjectId" />
-    <select name="userId" asp-items="@(new SelectList(ViewBag.AllUsers ?? new List<ProjectManagementSystem.Models.User>(), "Id", "Name"))"></select>
-    <button type="submit">Add</button>
-</form>
+    <div class="add-form">
+        <h3 class="mb-3">Add Participant</h3>
+        <form asp-action="AddParticipant" method="post" class="d-flex align-items-center">
+            <input type="hidden" name="projectId" value="@ViewBag.ProjectId" />
+            <select name="userId" class="form-select" asp-items="@(new SelectList(ViewBag.AllUsers ?? new List<User>(), "Id", "Name"))">
+                <option value="">Select user...</option>
+            </select>
+            <button type="submit" class="btn-add">Add</button>
+        </form>
+    </div>
 
-<a asp-controller="Projects" asp-action="Details" asp-route-id="@ViewBag.ProjectId">Back to Project</a>
+    <a asp-controller="Projects" asp-action="Details" asp-route-id="@ViewBag.ProjectId" class="btn-back">
+        <i class="fas fa-arrow-left"></i> Back to Project
+    </a>
+</div>

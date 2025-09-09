@@ -7,31 +7,36 @@ using System.Threading.Tasks;
 
 namespace ProjectManagementSystem.Services
 {
-    public class ProjectTaskService : IProjectTaskService
+    public class TaskService : ITaskService
     {
         private readonly ApplicationDbContext _context;
 
-        public ProjectTaskService(ApplicationDbContext context)
+        public TaskService(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        public async Task<IEnumerable<ProjectTask>> GetTasksByProjectIdAsync(int projectId)
+        public async Task<List<ProjectTask>> GetTasksByProjectIdAsync(int projectId)
         {
             return await _context.ProjectTasks
-                .Where(t => t.ProjectId == projectId)
                 .Include(t => t.AssignedUser)
+                .Where(t => t.ProjectId == projectId)
                 .ToListAsync();
         }
 
-        public async Task<ProjectTask> GetTaskByIdAsync(int id) // Changed to ProjectTask?
+        public async Task<ProjectTask> GetTaskByIdAsync(int id)
         {
             var task = await _context.ProjectTasks
                 .Include(t => t.Project)
                 .Include(t => t.AssignedUser)
                 .FirstOrDefaultAsync(t => t.Id == id);
-            
-            return task ?? throw new KeyNotFoundException($"Task with ID {id} not found");
+
+            if (task == null)
+            {
+                throw new KeyNotFoundException($"Task with ID {id} not found");
+            }
+
+            return task;
         }
 
         public async Task CreateTaskAsync(ProjectTask task)

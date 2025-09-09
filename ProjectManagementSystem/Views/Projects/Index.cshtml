@@ -5,49 +5,103 @@
 }
 
 <style>
-    body { font-family: Arial, sans-serif; }
-    table { width: 100%; border-collapse: collapse; margin: 20px 0; }
-    th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
-    th { background-color: #f2f2f2; }
-    .filter-form { margin-bottom: 20px; }
-    button { background-color: #4CAF50; color: white; padding: 10px; border: none; cursor: pointer; }
-    a { color: #2196F3; text-decoration: none; }
+    body {
+        background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%);
+        min-height: 100vh;
+        padding: 20px 0;
+    }
+    .table-container {
+        background: white;
+        border-radius: 16px;
+        box-shadow: 0 4px 24px rgba(44,62,80,0.08);
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+    .page-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #2c3e50;
+        margin-bottom: 24px;
+    }
+    .btn-primary {
+        background: linear-gradient(90deg, #4e54c8 0%, #8f94fb 100%);
+        border: none;
+        font-weight: 500;
+        transition: box-shadow 0.2s;
+    }
+    .btn-primary:hover {
+        box-shadow: 0 4px 16px rgba(44,62,80,0.16);
+        background: linear-gradient(90deg, #8f94fb 0%, #4e54c8 100%);
+    }
+    .table {
+        margin-bottom: 0;
+    }
+    .table th {
+        background: #f8f9fa;
+        border-bottom: 2px solid #dee2e6;
+    }
+    .action-links a {
+        margin: 0 5px;
+        color: #4e54c8;
+        text-decoration: none;
+    }
+    .action-links a:hover {
+        color: #8f94fb;
+    }
+    .filter-form {
+        background: white;
+        border-radius: 16px;
+        box-shadow: 0 4px 24px rgba(44,62,80,0.08);
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+    .filter-form input {
+        border-radius: 8px;
+        border: 1px solid #dee2e6;
+        padding: 8px 16px;
+    }
+    .filter-form button {
+        margin-left: 10px;
+    }
 </style>
 
-<h1>Projects</h1>
+<div class="container">
+    <h1 class="page-title">Projects</h1>
 
-<div class="filter-form">
-    <form asp-action="Index">
-        <label>Filter by Status:</label>
-        <input type="text" name="status" value="@ViewBag.Status" />
-        <button type="submit">Filter</button>
-    </form>
+    <div class="filter-form">
+        <form asp-action="Index" class="d-flex align-items-center">
+            <input type="text" name="status" value="@ViewBag.Status" class="form-control" placeholder="Filter by Status" />
+            <button type="submit" class="btn btn-primary">Filter</button>
+        </form>
+    </div>
+
+    <div class="table-container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var project in Model)
+                {
+                    <tr>
+                        <td>@project.Name</td>
+                        <td>@project.Description</td>
+                        <td>@project.Status</td>
+                        <td class="action-links">
+                            <a asp-action="Details" asp-route-id="@project.Id">Details</a> |
+                            <a asp-action="Edit" asp-route-id="@project.Id">Edit</a> |
+                            <a asp-action="Delete" asp-route-id="@project.Id">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <a asp-action="Create" class="btn btn-primary">Create New Project</a>
 </div>
-
-<table>
-    <thead>
-    <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Status</th>
-        <th>Actions</th>
-    </tr>
-    </thead>
-    <tbody>
-    @foreach (var project in Model)
-    {
-        <tr>
-            <td>@project.Name</td>
-            <td>@project.Description</td>
-            <td>@project.Status</td>
-            <td>
-                <a asp-action="Details" asp-route-id="@project.Id">Details</a> |
-                <a asp-action="Edit" asp-route-id="@project.Id">Edit</a> |
-                <a asp-action="Delete" asp-route-id="@project.Id">Delete</a>
-            </td>
-        </tr>
-    }
-    </tbody>
-</table>
-
-<a asp-action="Create">Create New Project</a>

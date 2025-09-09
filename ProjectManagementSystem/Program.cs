@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore; // For DbContextOptionsBuilder and UseInMemoryDatabase
 using ProjectManagementSystem.Data; // For ApplicationDbContext
 using ProjectManagementSystem.Models; // For User, Project, ProjectUser
-using ProjectManagementSystem.Services; // For IProjectService, ProjectService, IProjectTaskService, ProjectTaskService, IUserService, UserService
+using ProjectManagementSystem.Services; // For IProjectService, ProjectService, ITaskService, TaskService, IUserService, UserService
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,7 +12,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseInMemoryDatabase("ProjectManagementDb"));
 
 builder.Services.AddScoped<IProjectService, ProjectService>();
-builder.Services.AddScoped<IProjectTaskService, ProjectTaskService>();
+builder.Services.AddScoped<ITaskService, TaskService>();
 builder.Services.AddScoped<IUserService, UserService>();
 
 var app = builder.Build();

@@ -5,21 +5,61 @@
 }
 
 <style>
-    body { font-family: Arial, sans-serif; }
-    h2 { color: #333; }
-    dl { margin: 20px 0; }
-    dt { font-weight: bold; }
-    a { color: #2196F3; text-decoration: none; }
+    body {
+        background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%);
+        min-height: 100vh;
+        padding: 20px 0;
+    }
+    .details-container {
+        background: white;
+        border-radius: 16px;
+        box-shadow: 0 4px 24px rgba(44,62,80,0.08);
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+    .page-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #2c3e50;
+        margin-bottom: 24px;
+    }
+    .details-list {
+        list-style: none;
+        padding: 0;
+    }
+    .details-list li {
+        padding: 10px 0;
+        border-bottom: 1px solid #eee;
+    }
+    .details-list strong {
+        color: #2c3e50;
+        margin-right: 10px;
+    }
+    .btn-primary {
+        background: linear-gradient(90deg, #4e54c8 0%, #8f94fb 100%);
+        border: none;
+        font-weight: 500;
+        transition: box-shadow 0.2s;
+    }
+    .btn-primary:hover {
+        box-shadow: 0 4px 16px rgba(44,62,80,0.16);
+        background: linear-gradient(90deg, #8f94fb 0%, #4e54c8 100%);
+    }
 </style>
 
-<h1>@Model.Title</h1>
-<dl>
-    <dt>Description</dt>
-    <dd>@Model.Description</dd>
-    <dt>Assigned To</dt>
-    <dd>@(Model.AssignedUser?.Name ?? "Unassigned")</dd>
-    <dt>Project</dt>
-    <dd>@(Model.Project?.Name)</dd>
-</dl>
+<div class="container">
+    <h1 class="page-title">@Model.Title</h1>
 
-<a asp-action="Index" asp-route-projectId="@Model.ProjectId">Back to Tasks</a>
+    <div class="details-container">
+        <ul class="details-list">
+            <li><strong>Description:</strong> @Model.Description</li>
+            <li><strong>Assigned To:</strong> @(Model.AssignedUser?.Name ?? "Unassigned")</li>
+            <li><strong>Project:</strong> @(Model.Project?.Name ?? "Unknown Project")</li>
+        </ul>
+    </div>
+
+    <div class="d-flex gap-2">
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Edit</a>
+        <a asp-action="Index" asp-route-projectId="@Model.ProjectId" class="btn btn-secondary">Back to Tasks</a>
+    </div>
+</div>

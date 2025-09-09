@@ -5,17 +5,87 @@
 }
 
 <style>
-    body { font-family: Inter, sans-serif; }
-    button { background-color: #f44336; color: white; padding: 10px; border: none; cursor: pointer; }
-    a { color: #2196F3; text-decoration: none; }
+    .delete-container {
+        background: white;
+        border-radius: 16px;
+        box-shadow: 0 4px 24px rgba(44,62,80,0.08);
+        padding: 30px;
+        margin: 40px auto;
+        max-width: 500px;
+        text-align: center;
+    }
+    .warning-icon {
+        font-size: 48px;
+        color: #ff416c;
+        margin-bottom: 20px;
+    }
+    .page-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #2c3e50;
+        margin-bottom: 24px;
+    }
+    .warning-text {
+        background: rgba(255,65,108,0.1);
+        color: #ff416c;
+        border-radius: 8px;
+        padding: 15px;
+        margin-bottom: 25px;
+        font-size: 1.1rem;
+    }
+    .project-info {
+        background: #f8f9fa;
+        border-radius: 8px;
+        padding: 15px;
+        margin-bottom: 25px;
+        text-align: left;
+    }
+    .btn-delete {
+        background: linear-gradient(90deg, #ff416c 0%, #ff4b2b 100%);
+        border: none;
+        color: white;
+        padding: 10px 30px;
+        border-radius: 8px;
+        font-weight: 500;
+        width: 100%;
+        margin-bottom: 10px;
+        transition: all 0.2s;
+    }
+    .btn-delete:hover {
+        box-shadow: 0 4px 16px rgba(255,65,108,0.3);
+        background: linear-gradient(90deg, #ff4b2b 0%, #ff416c 100%);
+    }
+    .btn-back {
+        color: #2c3e50;
+        text-decoration: none;
+        display: block;
+        transition: color 0.2s;
+    }
+    .btn-back:hover {
+        color: #4e54c8;
+    }
 </style>
 
-<h1>Delete @Model.Name?</h1>
-<p>Are you sure? This will delete the project and related tasks.</p>
+<div class="delete-container">
+    <div class="warning-icon">⚠️</div>
+    <h1 class="page-title">Удалить проект?</h1>
+    
+    <div class="warning-text">
+        <strong>Внимание!</strong> Это действие нельзя отменить.
+        <br>
+        При удалении проекта будут удалены все связанные задачи и участники.
+    </div>
 
-<form asp-action="Delete" method="post">
-    <input type="hidden" asp-for="Id" />
-    <button type="submit">Delete</button>
-</form>
+    <div class="project-info">
+        <p><strong>Название:</strong> @Model.Name</p>
+        <p><strong>Описание:</strong> @Model.Description</p>
+        <p><strong>Статус:</strong> @Model.Status</p>
+    </div>
 
-<a asp-action="Index">Back</a>
+    <form asp-action="Delete" method="post">
+        <input type="hidden" asp-for="Id" />
+        <button type="submit" class="btn-delete">Удалить проект</button>
+    </form>
+    
+    <a asp-action="Index" class="btn-back">← Вернуться к списку</a>
+</div>

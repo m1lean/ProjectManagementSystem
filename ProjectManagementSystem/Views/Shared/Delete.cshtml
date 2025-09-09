@@ -1,0 +1,78 @@
+@model object
+
+@{
+    ViewData["Title"] = "Delete Confirmation";
+}
+
+<style>
+    body {
+        background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%);
+        min-height: 100vh;
+        padding: 20px 0;
+    }
+    .delete-container {
+        background: white;
+        border-radius: 16px;
+        box-shadow: 0 4px 24px rgba(44,62,80,0.08);
+        padding: 30px;
+        margin: 40px auto;
+        max-width: 500px;
+        text-align: center;
+    }
+    .page-title {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #2c3e50;
+        margin-bottom: 24px;
+    }
+    .warning-icon {
+        font-size: 3rem;
+        color: #ff416c;
+        margin-bottom: 16px;
+    }
+    .warning-text {
+        font-size: 1.125rem;
+        color: #34495e;
+        margin-bottom: 24px;
+    }
+    .btn-delete {
+        background: linear-gradient(90deg, #ff416c 0%, #ff4b2b 100%);
+        border: none;
+        font-weight: 500;
+        transition: all 0.2s;
+        padding: 10px 30px;
+        margin-bottom: 10px;
+        color: white;
+        border-radius: 8px;
+    }
+    .btn-delete:hover {
+        box-shadow: 0 4px 16px rgba(255,65,108,0.3);
+        background: linear-gradient(90deg, #ff4b2b 0%, #ff416c 100%);
+    }
+    .btn-back {
+        background: #f8f9fa;
+        border: none;
+        color: #2c3e50;
+        transition: all 0.2s;
+        padding: 10px 30px;
+        border-radius: 8px;
+    }
+    .btn-back:hover {
+        background: #e9ecef;
+        color: #1a1e21;
+    }
+</style>
+
+<div class="delete-container">
+    <div class="warning-icon">⚠️</div>
+    <h1 class="page-title">Подтверждение удаления</h1>
+    
+    <div class="warning-text">
+        <strong>Внимание!</strong> Это действие нельзя отменить.
+    </div>
+
+    <form asp-action="Delete" method="post">
+        <button type="submit" class="btn-delete">Удалить</button>
+        <a asp-action="Index" class="btn-back">← Вернуться к списку</a>
+    </form>
+</div>

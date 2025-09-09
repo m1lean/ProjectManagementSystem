@@ -4,53 +4,23 @@
     ViewData["Title"] = "User Details";
 }
 
-<style>
-    body { font-family: Arial, sans-serif; }
-    h2 { color: #333; }
-    dl { margin: 20px 0; }
-    dt { font-weight: bold; }
-    .section { margin-top: 30px; }
-    table { width: 100%; border-collapse: collapse; margin: 20px 0; }
-    th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
-    th { background-color: #f2f2f2; }
-    a { color: #2196F3; text-decoration: none; }
-</style>
-
 <h1>@Model.Name</h1>
-<dl>
-    <dt>Email</dt>
-    <dd>@Model.Email</dd>
-</dl>
 
-<div class="section">
-    <h2>Assigned Tasks</h2>
-    <table>
-        <thead><tr><th>Title</th><th>Project</th></tr></thead>
-        <tbody>
-        @foreach (var task in Model.AssignedTasks)
-        {
-            <tr>
-                <td>@task.Title</td>
-                <td>@(task.Project?.Name ?? "No Project")</td>
-            </tr>
-        }
-        </tbody>
-    </table>
+<div class="card mb-4">
+    <div class="card-body">
+        <p><strong>Email:</strong> @Model.Email</p>
+    </div>
 </div>
 
-<div class="section">
-    <h2>Projects</h2>
-    <table>
-        <thead><tr><th>Name</th></tr></thead>
-        <tbody>
-        @foreach (var pu in Model.ProjectUsers)
-        {
-            <tr>
-                <td>@(pu.Project?.Name ?? "Unknown Project")</td>
-            </tr>
-        }
-        </tbody>
-    </table>
+<div class="mb-4">
+    <h3>Assigned Tasks</h3>
+    <p>Tasks for this user are available in the <a asp-controller="Tasks" asp-action="Index">Tasks</a> section. Use filters to find tasks assigned to this user.</p>
 </div>
 
-<a asp-action="Index">Back to List</a>
+<div class="mb-4">
+    <h3>Projects</h3>
+    <p>Projects involving this user are listed in the <a asp-controller="Projects" asp-action="Index">Projects</a> section.</p>
+</div>
+
+<a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Edit</a>
+<a asp-action="Index" class="btn btn-secondary">Back to List</a>
